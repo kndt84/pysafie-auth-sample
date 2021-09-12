@@ -30,9 +30,6 @@ def get_auth_code():
     client_secret = conf['client_secret']
     redirect_uri = conf['redirect_uri']
 
-    print(conf)
-    print(code)
-
     safie = pysafie.Safie(client_id, client_secret, redirect_uri)
     safie.get_access_token(code)
     res = safie.get_device_list()
