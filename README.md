@@ -12,7 +12,7 @@ client_secret:
 redirect_uri:
 ```
 
-Run server
+Run the server
 ```
 sudo python3 runserver.py
 ```
@@ -21,6 +21,4 @@ Access the following url with your browser
 
 https://127.0.0.1/authsample
 
-Input safie ID and password
-
-You can see the device list retrieved from the Safie API
+Input safie ID and password, then you can see the device list retrieved from the Safie API
