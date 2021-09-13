@@ -25,7 +25,9 @@ def authsample():
 
 @route('/')
 def get_auth_code():
+    # Get authorization code as a GET parameter
     code = request.query.code
+    
     client_id = conf['client_id']
     client_secret = conf['client_secret']
     redirect_uri = conf['redirect_uri']
