@@ -33,15 +33,18 @@ def get_auth_code():
     redirect_uri = conf['redirect_uri']
 
     safie = pysafie.Safie(client_id, client_secret, redirect_uri)
-    safie.get_access_token(code)
-
-    # You can get access token information as instance variables and need to store it
-    print('access_token: ', self.access_token)
-    print('refresh_token: ', self.refresh_token)
-    print('expires_at: 'self.expires_at)
+    success, resp = safie.get_access_token(code)
+    print(success, resp.json())
+    if success:
+        # You can get access token information as instance variables and need to store it
+        print('access_token: ', safie.access_token)
+        print('refresh_token: ', safie.refresh_token)
+        print('expires_at: ', safie.expires_at)
     
-    res = safie.get_device_list()
-    return res.json()
+        res = safie.get_device_list()
+        return res.json()
+    else:
+        return resp.json()
 
 
 run(host='127.0.0.1', port=443, server=SSLWebServer)
