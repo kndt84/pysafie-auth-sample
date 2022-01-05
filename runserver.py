@@ -2,7 +2,7 @@ import yaml
 from bottle import route, run, request, redirect, ServerAdapter
 from gevent.pywsgi import WSGIServer
 import pysafie
-
+import json
 CERT = 'cert.pem'
 KEY = 'key.pem'
 
@@ -20,28 +20,18 @@ class SSLWebServer(ServerAdapter):
 
 @route('/authsample')
 def authsample():
-    return '<a href="https://openapi.safie.link/v1/auth/authorize?client_id=481a6e416310&response_type=code&scope=safie-api&redirect_uri=https://127.0.0.1">click here</a>'
+    return '<a href="https://openapi.safie.link/v1/auth/authorize?client_id=481a6e416310&response_type=code&scope=safie-api&redirect_uri=https://127.0.0.1"> click here </a>'
 
 
 @route('/')
 def get_auth_code():
     # Get authorization code as a GET parameter
     code = request.query.code
-    
-    client_id = conf['client_id']
-    client_secret = conf['client_secret']
-    redirect_uri = conf['redirect_uri']
-
-    safie = pysafie.Safie(client_id, client_secret, redirect_uri)
-    safie.get_access_token(code)
-
-    # You can get access token information as instance variables and need to store it
-    print('access_token: ', self.access_token)
-    print('refresh_token: ', self.refresh_token)
-    print('expires_at: 'self.expires_at)
-    
-    res = safie.get_device_list()
-    return res.json()
-
+    status = {}
+    status['status_code'] = '1000'
+    status['message'] = 'success'
+    status['auth_code'] = str(code)
+    response = json.dumps(status)
+    return response
 
 run(host='127.0.0.1', port=443, server=SSLWebServer)
