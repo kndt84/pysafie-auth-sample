@@ -20,7 +20,7 @@ class SSLWebServer(ServerAdapter):
 
 @route('/authsample')
 def authsample():
-    return '<a href="https://openapi.safie.link/v1/auth/authorize?client_id=481a6e416310&response_type=code&scope=safie-api&redirect_uri=https://127.0.0.1"> click here </a>'
+    return '<a href="https://openapi.safie.link/v1/auth/authorize?client_id=481a6e416310&response_type=code&scope=safie-api&redirect_uri=https://safie-auth.scorer.jp/auth_code"> click here </a>'
 
 
 @route('/')
